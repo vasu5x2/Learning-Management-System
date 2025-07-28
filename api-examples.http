@@ -1,0 +1,280 @@
+### Learning Management System API Examples
+### Base URL: http://localhost:5000/api
+
+### Health Check
+GET http://localhost:5000/api/health
+
+###
+
+### Register Admin User
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Admin User",
+  "email": "admin@test.com",
+  "password": "Admin123",
+  "role": "admin"
+}
+
+###
+
+### Register Student User
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Student User",
+  "email": "student@test.com",
+  "password": "Student123",
+  "role": "student"
+}
+
+###
+
+### Login Admin
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@test.com",
+  "password": "Admin123"
+}
+
+###
+
+### Login Student
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "student@test.com",
+  "password": "Student123"
+}
+
+###
+
+### Get User Profile (Student)
+GET http://localhost:5000/api/auth/profile
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+
+###
+
+### Get All Courses (Public)
+GET http://localhost:5000/api/courses
+
+###
+
+### Get Courses with Filters
+GET http://localhost:5000/api/courses?page=1&limit=5&category=Programming&level=Beginner&search=javascript
+
+###
+
+### Create Course (Admin Only)
+POST http://localhost:5000/api/courses
+Authorization: Bearer YOUR_ADMIN_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "title": "Python for Beginners",
+  "description": "Learn Python programming from scratch. This course covers basic syntax, data structures, and fundamental programming concepts.",
+  "instructor": "Dr. Alice Smith",
+  "price": 79.99,
+  "category": "Programming",
+  "level": "Beginner",
+  "duration": 30
+}
+
+###
+
+### Get Single Course
+GET http://localhost:5000/api/courses/COURSE_ID
+
+###
+
+### Add Lesson to Course (Admin Only)
+POST http://localhost:5000/api/courses/COURSE_ID/lessons
+Authorization: Bearer YOUR_ADMIN_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "title": "Introduction to Python",
+  "videoUrl": "https://example.com/python-intro.mp4",
+  "order": 1,
+  "resourceLinks": [
+    {
+      "title": "Python Official Documentation",
+      "url": "https://docs.python.org/"
+    },
+    {
+      "title": "Python Tutorial",
+      "url": "https://www.python.org/about/gettingstarted/"
+    }
+  ]
+}
+
+###
+
+### Add Quiz to Course (Admin Only)
+POST http://localhost:5000/api/courses/COURSE_ID/quizzes
+Authorization: Bearer YOUR_ADMIN_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "title": "Python Basics Quiz",
+  "description": "Test your understanding of Python fundamentals",
+  "order": 1,
+  "passingScore": 70,
+  "timeLimit": 20,
+  "questions": [
+    {
+      "questionText": "What is Python?",
+      "options": [
+        { "text": "A programming language", "isCorrect": true },
+        { "text": "A type of snake", "isCorrect": false },
+        { "text": "A database", "isCorrect": false },
+        { "text": "An operating system", "isCorrect": false }
+      ],
+      "explanation": "Python is a high-level, interpreted programming language known for its simplicity and readability."
+    },
+    {
+      "questionText": "Which of the following is used to create a variable in Python?",
+      "options": [
+        { "text": "var x = 5", "isCorrect": false },
+        { "text": "x = 5", "isCorrect": true },
+        { "text": "int x = 5", "isCorrect": false },
+        { "text": "declare x = 5", "isCorrect": false }
+      ],
+      "explanation": "In Python, you can create a variable simply by assigning a value to it using the equals sign."
+    }
+  ]
+}
+
+###
+
+### Enroll in Course (Student)
+POST http://localhost:5000/api/enrollments/COURSE_ID
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+
+###
+
+### Get User Enrollments (Student)
+GET http://localhost:5000/api/enrollments
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+
+###
+
+### Get Enrollment Details for a Course (Student)
+GET http://localhost:5000/api/enrollments/COURSE_ID
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+
+###
+
+### Mark Lesson as Completed (Student)
+PUT http://localhost:5000/api/progress/COURSE_ID/lessons/LESSON_ID/complete
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "watchTime": 1200
+}
+
+###
+
+### Update Lesson Watch Time (Student)
+PUT http://localhost:5000/api/progress/COURSE_ID/lessons/LESSON_ID/watch-time
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "watchTime": 800
+}
+
+###
+
+### Submit Quiz Attempt (Student)
+POST http://localhost:5000/api/progress/COURSE_ID/quizzes/QUIZ_ID/attempt
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "answers": [
+    {
+      "questionId": "QUESTION_ID_1",
+      "selectedOption": 0
+    },
+    {
+      "questionId": "QUESTION_ID_2",
+      "selectedOption": 1
+    }
+  ],
+  "timeSpent": 900
+}
+
+###
+
+### Get Course Progress (Student)
+GET http://localhost:5000/api/progress/COURSE_ID
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+
+###
+
+### Get Quiz Attempts (Student)
+GET http://localhost:5000/api/progress/COURSE_ID/quizzes/QUIZ_ID/attempts
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+
+###
+
+### Get Detailed Quiz Attempt (Student)
+GET http://localhost:5000/api/progress/COURSE_ID/quizzes/QUIZ_ID/attempts/ATTEMPT_ID
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+
+###
+
+### Update User Profile (Student)
+PUT http://localhost:5000/api/auth/profile
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "name": "Updated Student Name"
+}
+
+###
+
+### Change Password (Student)
+PUT http://localhost:5000/api/auth/change-password
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "currentPassword": "Student123",
+  "newPassword": "NewPassword123"
+}
+
+###
+
+### Update Course (Admin Only)
+PUT http://localhost:5000/api/courses/COURSE_ID
+Authorization: Bearer YOUR_ADMIN_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "title": "Updated Course Title",
+  "price": 89.99,
+  "description": "Updated course description with more details."
+}
+
+###
+
+### Delete Course (Admin Only)
+DELETE http://localhost:5000/api/courses/COURSE_ID
+Authorization: Bearer YOUR_ADMIN_JWT_TOKEN
+
+###
+
+### Unenroll from Course (Student)
+DELETE http://localhost:5000/api/enrollments/COURSE_ID
+Authorization: Bearer YOUR_STUDENT_JWT_TOKEN
+
+###
