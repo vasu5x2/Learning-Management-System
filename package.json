@@ -1,0 +1,34 @@
+{
+  "name": "lms-backend",
+  "version": "1.0.0",
+  "description": "Learning Management System Backend API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node utils/seeder.js",
+    "seed:destroy": "node utils/seeder.js -d",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["lms", "learning", "education", "api"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.6.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": "18.x",
+    "npm": "8.x"
+  }
+}
