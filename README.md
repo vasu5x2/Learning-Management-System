@@ -91,7 +91,7 @@ The server will start on `https://learning-management-system-a1lh.onrender.com`
 
 ### Base URL
 ```
-http://localhost:5000/api
+https://learning-management-system-a1lh.onrender.com
 ```
 
 ### Authentication Endpoints
