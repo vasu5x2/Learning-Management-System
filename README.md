@@ -85,7 +85,7 @@ A comprehensive backend API for a Learning Management System built with Node.js,
    npm start
    ```
 
-The server will start on `http://localhost:5000`
+The server will start on `https://learning-management-system-a1lh.onrender.com`
 
 ## API Documentation
 
