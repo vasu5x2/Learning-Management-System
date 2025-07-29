@@ -57,15 +57,16 @@ A comprehensive backend API for a Learning Management System built with Node.js,
    npm install
    ```
 
-3. **Environment Configuration**
-   Create a `.env` file in the root directory:
+3. **Environment Setup**
+   Create a `.env` file in the root folder with the following:
    ```env
    PORT=5000
    MONGODB_URI=mongodb://localhost:27017/lms_database
-   JWT_SECRET=your_super_secret_jwt_key_change_this_in_production
+   JWT_SECRET=your_jwt_secret_key
    JWT_EXPIRE=7d
    NODE_ENV=development
    ```
+   > 💡 Tip: Use a strong secret key in production and connect to a real MongoDB instance.
 
 4. **Start MongoDB**
    Make sure MongoDB is running on your system.
